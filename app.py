@@ -1,9 +1,10 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from pycaret.classification import *
-import pandas as pd
-from pydantic import BaseModel
 import logging
+
+import pandas as pd
+from fastapi import FastAPI, HTTPException
+from pycaret.classification import *
+from pydantic import BaseModel
+
 
 logging.basicConfig(
     filename="applogs.log",

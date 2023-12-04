@@ -26,7 +26,7 @@ data = {
     "GRIN2A": "NOT_MUTATED",
     "IDH2": "NOT_MUTATED",
     "FAT4": "NOT_MUTATED",
-    "PDGFRA": "NOT_MUTATED"
+    "PDGFRA": "NOT_MUTATED",
 }
 
 try:
