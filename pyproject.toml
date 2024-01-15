@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "practice-ml-dev"
+version = "0.1.0"
+description = ""
+authors = ["torchme <redpowerfuls@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.1 <4.0"
+python-dotenv = "^1.0.0"
+loguru = "^0.7.2"
+pandas = "2.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pre-commit = "^3.5.0"
+ruff = "^0.1.11"
+jupyterlab = "^4.0.10"
+
+[tool.ruff]
+exclude = [
+    "**/__init__.py",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    ".venv",
+    ".csv"
+]
+
+line-length = 88
+indent-width = 4
+
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
