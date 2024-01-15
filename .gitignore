@@ -247,3 +247,4 @@ src/artifacts/*
 *.avi
 .ruff_cache
 *.session
+*.csv
