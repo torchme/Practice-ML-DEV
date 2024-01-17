@@ -1,0 +1,10 @@
+.venv
+logs.log
+.pytest_cache
+.ruff_cache
+.mypy_cache
+*.ipynb_checkpoints
+*.ipynb
+*.pyc
+.trunk
+.vscode
