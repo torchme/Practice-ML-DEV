@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  itmo_case6:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    container_name: itmo_case6
+    command: poetry run uvicorn src.backend.app:app --host 0.0.0.0 --port 8000
