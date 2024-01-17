@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Глиома Мозга - Модель Классификации</title>
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <script>
+            async function sendApiRequest(method, url, body = null) {
+                try {
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: body ? { 'Content-Type': 'application/json' } : {},
+                        body: body ? JSON.stringify(body) : null
+                    });
+                    return response.json();
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                }
+            }
+
+            async function login() {
+                var username = document.getElementById('login-username').value;
+                var password = document.getElementById('login-password').value;
+
+                // FormData автоматически создает данные в формате 'application/x-www-form-urlencoded'
+                let formData = new FormData();
+                formData.append('username', username);
+                formData.append('password', password);
+                // Если требуется, добавьте дополнительные поля, как в Swagger UI
+                // formData.append('grant_type', 'password');
+
+                try {
+                    const response = await fetch('/token', {
+                        method: 'POST',
+                        // Примечание: заголовок 'Content-Type' указывать не нужно, так как FormData автоматически устанавливает правильный тип содержимого
+                        body: new URLSearchParams(formData).toString() // Используем URLSearchParams для преобразования FormData в строку
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    console.log(result);
+
+                    // Сохраните токен в localStorage или выполните другие действия
+                    localStorage.setItem('token', result.access_token);
+
+                    // Показать сообщение или перенаправить пользователя
+                    alert('Вы вошли в систему!');
+                    // window.location.href = '/some-protected-route';
+                } catch (error) {
+                    console.error('Ошибка при входе:', error);
+                }
+            }
+
+
+            async function signup() {
+                var username = document.getElementById('signup-username').value;
+                var password = document.getElementById('signup-password').value;
+                const result = await sendApiRequest('POST', '/user/signup', { username, password });
+                console.log(result);
+            }
+
+            async function getPrices() {
+                const result = await sendApiRequest('GET', '/price');
+                document.getElementById('prices').innerText = JSON.stringify(result, null, 2);
+            }
+
+            async function predict() {
+                var modelName = document.getElementById('model-name').value;
+                // Замените `data` на фактические данные, которые нужно отправить
+                const data = { /* данные модели */ };
+                const result = await sendApiRequest('POST', `/model/${modelName}`, data);
+                console.log(result);
+            }
+        </script>
+    </head>
+
+<body>
+    <h1>Система Классификации Глиомы Мозга</h1>
+
+    <div id="login-section">
+        <h2>Войти</h2>
+        <input type="text" id="login-username" placeholder="Имя пользователя">
+        <input type="password" id="login-password" placeholder="Пароль">
+        <button onclick="login()">Войти</button>
+    </div>
+
+    <div id="signup-section">
+        <h2>Регистрация</h2>
+        <input type="text" id="signup-username" placeholder="Имя пользователя">
+        <input type="password" id="signup-password" placeholder="Пароль">
+        <button onclick="signup()">Зарегистрироваться</button>
+    </div>
+
+    <div id="prices-section">
+        <h2>Получить Цены Моделей</h2>
+        <button onclick="getPrices()">Получить Цены</button>
+        <div id="prices"></div>
+    </div>
+
+    <div id="prediction-section">
+        <h2>Предсказание</h2>
+        <input type="text" id="model-name" placeholder="Название модели">
+        <input type="number" id="age" placeholder="Возраст">
+        <input type="text" id="gender" placeholder="Пол">
+        <!-- Добавьте дополнительные поля для каждого параметра, необходимого модели -->
+        <button onclick="predict()">Предсказать</button>
+    </div>
+</body>
+</html>
