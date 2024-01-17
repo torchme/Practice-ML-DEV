@@ -248,3 +248,5 @@ src/artifacts/*
 .ruff_cache
 *.session
 *.csv
+*.pkl
+.vscode
