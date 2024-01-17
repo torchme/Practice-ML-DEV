@@ -250,3 +250,7 @@ src/artifacts/*
 *.csv
 *.pkl
 .vscode
+*.sqlite
+/artifacts/db/*
+/artifacts/models/*
+/artifacts/data/*

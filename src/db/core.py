@@ -47,5 +47,5 @@ class Item(Base):
     fat4 = Column(String, index=True)
     pdgfra = Column(String, index=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
-
+    prediction = Column(String, index=True)
     owner = relationship("User", back_populates="items")

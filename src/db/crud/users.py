@@ -1,8 +1,7 @@
+import src.db.core as core
 from fastapi import HTTPException
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
-
-import src.db.core as core
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
