@@ -33,6 +33,6 @@
 Для начала работы с проектом выполните следующие шаги:
 
 ```bash
-git clone [URL вашего репозитория]
+git clone https://github.com/torchme/Practice-ML-DEV.git
 cd itmo_case6
 docker-compose up --build
